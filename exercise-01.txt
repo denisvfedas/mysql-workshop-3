@@ -1,0 +1,126 @@
+SELECT 
+     COUNT(*),
+     a.id,
+     a.email,
+     a.password,
+     aB.name
+FROM Account a JOIN AddressBook aB ON a.id = aB.accountId 
+GROUP BY aB.accountId
+ORDER BY COUNT(*) DESC;
+
+mysql> SELECT 
+    ->      COUNT(*),
+    ->      a.id,
+    ->      a.email,
+    ->      a.password,
+    ->      aB.name
+    -> FROM Account a JOIN AddressBook aB ON a.id = aB.accountId 
+    -> GROUP BY aB.accountId
+    -> ORDER BY COUNT(*) DESC;
++----------+-----+-------------------------------------------------------+-------------+--------------------------------------+
+| COUNT(*) | id  | email                                                 | password    | name                                 |
++----------+-----+-------------------------------------------------------+-------------+--------------------------------------+
+|       19 |  14 | egestas.Fusce.aliquet@nec.edu                         | WMH41SPP9PE | Varius Incorporated                  |
+|       19 |   5 | in.cursus@sedconsequat.edu                            | JTV98CDW5SE | Justo Nec Incorporated               |
+|       18 |  58 | ultrices.sit@arcu.co.uk                               | BGA04ZZV8SZ | Sed Dui Corporation                  |
+|       18 |  42 | Nam.consequat.dolor@nondapibusrutrum.ca               | YDS15WJI0FF | Libero Proin Sed Corporation         |
+|       17 |   2 | sit.amet.metus@orcilacus.net                          | TYV38WIA6MT | Fermentum Fermentum Company          |
+|       16 |  20 | neque.vitae@enimcommodohendrerit.net                  | OFM24YIA1HD | Quam LLC                             |
+|       16 |  76 | consectetuer.rhoncus@pedeacurna.net                   | RNW54RQM9KM | Sed Congue Elit Limited              |
+|       15 |  71 | magna.Praesent@Inmipede.edu                           | DUI57VKX5US | Integer Tincidunt Aliquam Foundation |
+|       15 |  83 | lobortis@metus.edu                                    | FKD39HFM8CG | Ridiculus Mus Consulting             |
+|       15 |  31 | purus.Nullam.scelerisque@eleifend.org                 | KPZ39PLK5KP | Mattis Inc.                          |
+|       15 |  23 | libero.lacus.varius@gravidaAliquamtincidunt.com       | UFI21GDR5FI | Sagittis PC                          |
+|       15 |  77 | tincidunt.nibh.Phasellus@Inscelerisquescelerisque.net | KWC62HNN3YZ | Quis Pede Praesent Institute         |
+|       15 |  62 | mauris@placeratCrasdictum.net                         | VJN15TDO8CJ | Arcu Industries                      |
+|       14 |  26 | lobortis@elementumpurus.co.uk                         | FNL30WHE3OV | Et Euismod LLP                       |
+|       14 |  65 | et.ipsum.cursus@euaugue.com                           | RTR31ZYS4RS | Tempor Augue PC                      |
+|       14 |  87 | blandit@nec.com                                       | FVZ33MOA9WU | Ligula Nullam Corporation            |
+|       14 |  95 | lorem@apurusDuis.edu                                  | RZH78FRG9YF | Elementum Company                    |
+|       14 |  56 | vitae@tinciduntpede.com                               | LCO70FLF7YP | Lorem Auctor Foundation              |
+|       13 |  48 | Proin.nisl@arcuMorbisit.net                           | GDB72WGR1IY | Metus Inc.                           |
+|       13 |  29 | Ut.sagittis.lobortis@semperduilectus.net              | JRA70KOF7CD | Nulla In Tincidunt Institute         |
+|       13 |  68 | Vivamus.molestie@Infaucibus.org                       | XDE19XPH8OA | Ac Tellus Suspendisse PC             |
+|       13 |  60 | leo@temporloremeget.co.uk                             | KZH78ACA2VL | Vel PC                               |
+|       13 |  88 | adipiscing@Sedetlibero.ca                             | OGF48ZJQ7EL | Pharetra Ut Limited                  |
+|       13 |  49 | Donec.tempus.lorem@aliquetodio.ca                     | CCQ64KGB1EC | Enim Non Nisi Foundation             |
+|       13 |  91 | Donec.vitae@et.ca                                     | LQY70QKW5NH | Mauris Vel Corp.                     |
+|       13 |  78 | ridiculus.mus@euismod.net                             | PED45GXC5ST | Orci Tincidunt Adipiscing LLP        |
+|       13 |  97 | Praesent@miDuis.net                                   | WNW54YIN8HW | Eros Non Ltd                         |
+|       13 |  73 | sit@nonfeugiatnec.org                                 | LET04GZT3WC | Feugiat Foundation                   |
+|       12 |  16 | libero.et@eratvolutpatNulla.edu                       | RSV33YWR2ND | Quis Lectus Nullam Consulting        |
+|       12 |  51 | nisl.sem.consequat@dapibus.org                        | UGU28OXG7WL | Fringilla Ornare Institute           |
+|       12 |  82 | natoque@perinceptoshymenaeos.net                      | NTM99AEY1KG | Non Lobortis Quis Corp.              |
+|       12 |   9 | Suspendisse.non@nullavulputatedui.ca                  | GBV71MAA0JK | Ut Cursus Incorporated               |
+|       12 |  25 | Vestibulum.ante.ipsum@egestasblanditNam.net           | HUL78TSW9VQ | Commodo Ipsum PC                     |
+|       12 |  98 | iaculis.nec@magnaCrasconvallis.co.uk                  | USQ57GMI8SU | Quisque Nonummy Incorporated         |
+|       12 | 100 | ligula.Nullam.feugiat@ligulaDonecluctus.net           | XXQ41HXJ2IW | Lorem Ipsum Corporation              |
+|       12 |  79 | semper.egestas.urna@ipsumSuspendissesagittis.ca       | KPO28CXW5CJ | Eu Augue Incorporated                |
+|       12 |  13 | Vivamus.euismod.urna@anteNunc.net                     | SLX48XFK2ZG | Libero Integer Ltd                   |
+|       12 |  44 | magna.Praesent@Lorem.ca                               | LCJ82SSS9OC | Pede Company                         |
+|       12 |  12 | non@eget.com                                          | DQC35HSZ5TH | Sit Consulting                       |
+|       12 |  66 | adipiscing.fringilla.porttitor@Quisqueac.edu          | CRJ06GCF6CU | Arcu Aliquam Associates              |
+|       12 |  41 | eu@Crasvulputatevelit.com                             | RMN01GMD3QE | Nunc Mauris Associates               |
+|       12 |   8 | orci.in@nonnisi.ca                                    | AIV91QNQ3TS | Orci Associates                      |
+|       12 |  59 | bibendum@orciUtsemper.com                             | QYJ90FFI6MH | Ut Nisi Ltd                          |
+|       12 |  74 | orci.consectetuer.euismod@lacinia.com                 | WRD33AMO3FI | A Purus Duis Associates              |
+|       11 |  90 | eu.eros.Nam@temporarcu.edu                            | QYC93TSB5TQ | Morbi Sit Amet Corp.                 |
+|       11 |   7 | est.ac@etmalesuadafames.ca                            | YJU55KOH1JD | At Foundation                        |
+|       11 |  75 | Nunc.pulvinar.arcu@vel.ca                             | GIH18PCO4OI | Et Ltd                               |
+|       11 |  64 | Phasellus.vitae@diamat.com                            | LCQ73YZK5QL | Enim Etiam LLP                       |
+|       11 |  61 | porta@Vivamus.com                                     | QIS16XHG0RS | Torquent Industries                  |
+|       11 |  50 | dignissim.lacus@vel.ca                                | QMM89JHR0NV | Est Mauris Consulting                |
+|       11 |  63 | consectetuer.rhoncus.Nullam@temporloremeget.org       | IXW18QLZ3AH | Mauris Blandit Limited               |
+|       11 |  54 | pellentesque.Sed.dictum@lectusquis.co.uk              | LYQ58VJW4OO | Proin Mi Aliquam Consulting          |
+|       11 |  28 | lobortis@hendreritaarcu.edu                           | ZQC19TEI2NQ | Mauris Associates                    |
+|       11 |  85 | lacinia@sapien.co.uk                                  | BIT02RZI4QJ | Magna Phasellus Incorporated         |
+|       11 |  38 | facilisis.non@vulputateullamcorpermagna.ca            | FKI62AOV3OZ | Odio Auctor Vitae Limited            |
+|       11 |  11 | aliquet.vel@orci.org                                  | HLF34ATH3LC | Sit Amet Dapibus Institute           |
+|       11 |  93 | Duis.ac.arcu@ascelerisque.co.uk                       | NBB12JMT4OP | Vitae Posuere At Company             |
+|       10 |  46 | magna.Sed.eu@duiSuspendisseac.edu                     | KZE80SSV9XW | Nec Leo Morbi Foundation             |
+|       10 |   6 | nulla.vulputate@Nullamscelerisque.co.uk               | FIA60YIT5YI | Varius Corp.                         |
+|       10 |  45 | in@purusDuiselementum.co.uk                           | OVB80BUR2DR | Amet Risus Donec Corp.               |
+|       10 |  47 | non.arcu.Vivamus@mollisvitae.ca                       | NDF08WQM1YB | Et Company                           |
+|       10 |  69 | dapibus.quam@interdumligulaeu.ca                      | EIW32VON7TZ | Sem Industries                       |
+|       10 |  36 | ante@nulla.edu                                        | JIQ02QKA6BD | Sapien Cursus Associates             |
+|       10 |  35 | non.justo.Proin@variuset.edu                          | KIG34WTF7PP | Venenatis Lacus Consulting           |
+|       10 |  33 | dui@felisorciadipiscing.ca                            | AOE03AMB3PT | Nunc Quis Arcu Incorporated          |
+|       10 |   1 | Donec.vitae@Phasellusornare.org                       | LUW56VCP9SK | Fringilla Ornare LLC                 |
+|        9 |  94 | velit.eget.laoreet@placerat.net                       | MIB94DAD1WH | Ullamcorper Company                  |
+|        9 |  57 | amet@nisiaodio.com                                    | XFL52UZU6JK | Congue A Aliquet Inc.                |
+|        9 |  92 | ipsum.non@Nullaeu.net                                 | MVM63WHZ9LE | Mollis Corporation                   |
+|        9 |  81 | ut@Integersemelit.org                                 | IDT43CMF8TQ | Purus Mauris Industries              |
+|        9 |  10 | quam.dignissim.pharetra@sed.co.uk                     | LCF77ZRN6CK | Non Sollicitudin Corp.               |
+|        9 |  43 | vestibulum.massa.rutrum@nonummy.org                   | ZTQ54YOB2XJ | Dolor Fusce Corp.                    |
+|        9 |  24 | ipsum.dolor@nisia.co.uk                               | YYZ42SAW2ZL | Sed Id Institute                     |
+|        9 |  84 | aptent@nequesedsem.edu                                | FJI67WVI4ZC | Lorem Foundation                     |
+|        9 |  34 | Morbi.neque@erat.org                                  | NDZ74GBO0WB | Ut Nec Urna PC                       |
+|        9 |  80 | Aliquam.adipiscing.lobortis@lobortisnisinibh.org      | RJJ78IJI8MH | Donec Consectetuer LLP               |
+|        9 |  18 | ultricies.adipiscing@cursusluctusipsum.co.uk          | ZWF29BWE4JD | Rutrum Lorem Corp.                   |
+|        9 |  32 | felis.purus@acliberonec.org                           | DTF56MKT8KL | Elit Curabitur Sed Institute         |
+|        9 |  70 | Cum.sociis@laoreet.co.uk                              | VHU41KFV3RH | Magna A LLP                          |
+|        9 |  67 | orci@sit.co.uk                                        | FDK96BLN6XE | Sed Inc.                             |
+|        8 |  19 | diam.luctus.lobortis@ipsumac.ca                       | WLH72UYE4MJ | Vestibulum Mauris Ltd                |
+|        8 |  37 | Donec.vitae@Integertincidunt.com                      | TAQ13LGF9XK | Eleifend Nunc Risus Institute        |
+|        8 |  21 | vitae.diam.Proin@pellentesqueeget.co.uk               | PHM36NJD1TT | Viverra Donec Tempus LLC             |
+|        8 |  53 | inceptos@dictummagna.org                              | IVR25QIV1CO | Neque Company                        |
+|        8 |   4 | Quisque@Donec.net                                     | QWZ62HQU1MH | Penatibus Et Magnis Incorporated     |
+|        8 |  30 | pede@turpisIncondimentum.edu                          | PRZ05USG5GO | Aliquet Metus Urna PC                |
+|        7 |   3 | ipsum.Donec@tellus.ca                                 | WZE25PPL3KA | Donec Incorporated                   |
+|        7 |  99 | fringilla@posuereat.net                               | FUA04MSX4CM | Cum Sociis Foundation                |
+|        7 |  55 | mattis.Cras.eget@Etiamgravidamolestie.ca              | EII40BHX5FQ | Et Limited                           |
+|        7 |  15 | vulputate@temporerat.org                              | KFD17PWJ8PZ | Mauris Aliquam Eu Foundation         |
+|        7 |  22 | eu.metus@atlibero.co.uk                               | LLL21RPU2NE | Eget Lacus Associates                |
+|        7 |  89 | commodo@tincidunt.co.uk                               | FUD20VFX9GT | Egestas Aliquam Industries           |
+|        7 |  39 | sed.consequat.auctor@necquamCurabitur.net             | XUT06OCU5EG | Enim Mi Tempor Inc.                  |
+|        7 |  40 | amet.ultricies.sem@turpisIn.ca                        | YUT11SED3BK | At Sem Industries                    |
+|        6 |  17 | leo.Cras.vehicula@quis.co.uk                          | WVA57BYV8RF | Mi Eleifend Ltd                      |
+|        6 |  96 | fermentum.convallis@ridiculusmusAenean.edu            | NCD25RTP4ZI | Egestas Urna Justo Foundation        |
+|        6 |  27 | lorem@sit.ca                                          | DZM21VOL4AV | Neque Company                        |
+|        6 |  72 | mauris.id@tellusidnunc.net                            | TTS78NKD2EX | Id Ltd                               |
+|        5 |  86 | nec.ligula@sedtortorInteger.com                       | VUY00XLF1GQ | Quisque Associates                   |
+|        3 |  52 | vel.convallis.in@semmolestie.co.uk                    | DPU08WIH3XA | Integer In Corporation               |
++----------+-----+-------------------------------------------------------+-------------+--------------------------------------+
+100 rows in set (0.01 sec)
+
+     
