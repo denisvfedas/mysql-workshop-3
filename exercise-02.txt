@@ -1,134 +1,112 @@
-* Which Address Book contains the most Entries?
+### Exercise 2
+* How many Address Book Entries have phones starting with area code ```3XX```?
 
 SELECT 
-     COUNT(*),
+     aB.id,
      aB.name,
      e.firstName,
-     e.lastName
-FROM AddressBook aB JOIN Entry e ON aB.id = e.addressBookId
-GROUP BY aB.id
-ORDER BY COUNT(*) DESC;
+     e.lastName,
+     e.subtype,
+     e.contentLineOne
+FROM AddressBook aB JOIN Entry e 
+     ON aB.id = e.addressBookId
+     WHERE e.subtype = 'phone'
+     AND e.contentLineOne LIKE '(3__)%' 
+     OR e.contentLineOne LIKE '1-3__%';
+     
++-----+-----------------------------------+-----------+------------+---------+----------------+
+| id  | name                              | firstName | lastName   | subtype | contentLineOne |
++-----+-----------------------------------+-----------+------------+---------+----------------+
+|   7 | Orci Tincidunt Adipiscing LLP     | Gabriel   | Alford     | phone   | (374) 698-9200 |
+|  57 | Egestas Aliquam Industries        | Irene     | Holcomb    | phone   | (337) 172-8634 |
+|  85 | Neque Company                     | Herman    | Ball       | phone   | (309) 886-9975 |
+|  99 | Mollis Corporation                | Flavia    | Joyner     | phone   | (396) 700-8740 |
+|  37 | Eu Augue Incorporated             | Sophia    | Conway     | phone   | (341) 778-8112 |
+
+
+|  55 | Ornare Elit Corp.                 | Delilah   | Decker     | phone   | 1-377-998-8637 |
+|  99 | Mollis Corporation                | Kelly     | Walls      | phone   | 1-301-231-6410 |
+|  33 | Magna Corp.                       | Orson     | Flynn      | phone   | 1-314-438-7333 |
+|   8 | Sed Id Institute                  | Mallory   | King       | phone   | 1-390-805-4496 |
+|  18 | Et Ltd                            | Juliet    | Bryan      | phone   | 1-388-305-4402 |
+|  99 | Mollis Corporation                | Fatima    | Coffey     | phone   | 1-348-574-3766 |
+|  47 | Enim Etiam LLP                    | Beau      | Sheppard   | phone   | 1-332-936-3570 |
++-----+-----------------------------------+-----------+------------+---------+----------------+
+60 rows in set (0.00 sec)
+
 
 mysql> SELECT 
-    ->      COUNT(*),
-    ->      aB.name,
-    ->      e.firstName,
-    ->      e.lastName
-    -> FROM AddressBook aB JOIN Entry e ON aB.id = e.addressBookId
-    -> GROUP BY aB.id
-    -> ORDER BY COUNT(*) DESC;
-+----------+---------------------------------------+-----------+------------+
-| COUNT(*) | name                                  | firstName | lastName   |
-+----------+---------------------------------------+-----------+------------+
-|       52 | Eu Augue Incorporated                 | Sophia    | Conway     |
-|       50 | Ac Tellus Suspendisse PC              | Miriam    | Greene     |
-|       49 | Quisque Associates                    | Anthony   | Delacruz   |
-|       48 | Sed Id Institute                      | Aline     | Charles    |
-|       48 | Sagittis PC                           | Aquila    | Santos     |
-|       47 | Ipsum Nunc LLC                        | Garrison  | Cox        |
-|       46 | Orci Tincidunt Adipiscing LLP         | Gabriel   | Alford     |
-|       46 | Egestas Aliquam Industries            | Irene     | Holcomb    |
-|       46 | Nulla In Tincidunt Institute          | Lenore    | Gallegos   |
-|       45 | Eleifend Nunc Risus Institute         | Sybill    | Francis    |
-|       45 | Enim Mi Tempor Inc.                   | Janna     | Wallace    |
-|       45 | Sed Congue Elit Limited               | Arsenio   | Howe       |
-|       44 | Vestibulum Mauris Ltd                 | Herrod    | Conrad     |
-|       44 | Pharetra Ut Limited                   | Teegan    | Molina     |
-|       44 | Non Lobortis Quis Corp.               | Cassandra | Carney     |
-|       44 | In Faucibus Orci LLC                  | Benjamin  | Parrish    |
-|       44 | Venenatis Lacus Consulting            | Eden      | Wise       |
-|       43 | Vel PC                                | Rina      | Morrow     |
-|       43 | Justo Faucibus Lectus Company         | Andrew    | Boyd       |
-|       43 | Commodo Ipsum PC                      | Adam      | Downs      |
-|       43 | Magna Corp.                           | Tad       | Higgins    |
-|       43 | Non Consulting                        | Julie     | Drake      |
-|       42 | Neque Company                         | Aretha    | Miles      |
-|       42 | Porta Ltd                             | Velma     | Cooley     |
-|       42 | Fermentum Fermentum Company           | Emi       | Mcfarland  |
-|       41 | Est Mauris Consulting                 | Macey     | Sullivan   |
-|       41 | Tempor Augue PC                       | Meghan    | Mcintosh   |
-|       41 | Adipiscing Institute                  | Amelia    | Saunders   |
-|       41 | Mauris Blandit Limited                | Zoe       | Jacobson   |
-|       41 | Pede Company                          | Justin    | Roy        |
-|       40 | Elit Elit PC                          | Caesar    | Juarez     |
-|       40 | Parturient Montes Nascetur Industries | Raja      | Cochran    |
-|       39 | Eu Placerat Ltd                       | Cecilia   | William    |
-|       39 | Lorem Auctor Foundation               | Keane     | Browning   |
-|       39 | A Purus Duis Associates               | Mallory   | Silva      |
-|       39 | Malesuada Associates                  | Madison   | Perkins    |
-|       38 | Nunc Mauris Associates                | Wilma     | Lloyd      |
-|       38 | Penatibus Et Magnis Incorporated      | Jermaine  | Cannon     |
-|       38 | Eros Non Ltd                          | Preston   | Burch      |
-|       38 | Et Limited                            | TaShya    | Weeks      |
-|       38 | Sit Consulting                        | Blythe    | Elliott    |
-|       38 | Malesuada Id Erat Associates          | Aurelia   | Burton     |
-|       38 | Arcu Aliquam Associates               | Veda      | Pierce     |
-|       38 | Enim Commodo Hendrerit Industries     | Aidan     | Gilliam    |
-|       37 | Ut Nec Urna PC                        | Cole      | Hamilton   |
-|       37 | Sem Corporation                       | Daphne    | Gomez      |
-|       37 | Et Ltd                                | Hannah    | Bowers     |
-|       37 | Dui Institute                         | Gil       | Perez      |
-|       37 | Sed Dui Corporation                   | Rogan     | Walton     |
-|       37 | Tellus Sem Inc.                       | Steven    | Gentry     |
-|       36 | Ac Foundation                         | Autumn    | Bridges    |
-|       36 | At Foundation                         | Jaden     | Mclean     |
-|       36 | Fringilla Ornare LLC                  | Kirk      | Beck       |
-|       36 | Ligula Nullam Corporation             | Allegra   | Zimmerman  |
-|       36 | Et Euismod LLP                        | Ella      | Perez      |
-|       36 | Quisque Nonummy Incorporated          | Aphrodite | Fuentes    |
-|       36 | Mollis Corporation                    | Flavia    | Joyner     |
-|       36 | Aliquam Foundation                    | Brenna    | Willis     |
-|       36 | Faucibus Associates                   | Bree      | Manning    |
-|       36 | Odio Auctor Vitae Limited             | Cain      | Vinson     |
-|       36 | Nec Leo Morbi Foundation              | Clare     | Bell       |
-|       36 | Libero Proin Sed Corporation          | Emerson   | Galloway   |
-|       35 | Id Ltd                                | Uriel     | Gordon     |
-|       35 | Fringilla Corp.                       | Gabriel   | Day        |
-|       35 | Justo Nec Incorporated                | Whitney   | Hunter     |
-|       35 | Neque Company                         | Price     | Charles    |
-|       35 | Metus Inc.                            | Carissa   | Donovan    |
-|       35 | Lorem Foundation                      | Maxwell   | Lara       |
-|       35 | Elementum Company                     | Phyllis   | Ramsey     |
-|       35 | Amet Consectetuer Adipiscing LLC      | Kellie    | Carrillo   |
-|       34 | Ut Nisi Ltd                           | Jocelyn   | Howe       |
-|       34 | Accumsan Industries                   | Lareina   | Warren     |
-|       34 | Sapien Cursus Associates              | Lance     | Nichols    |
-|       34 | Sem Industries                        | Cynthia   | Schultz    |
-|       34 | Arcu Industries                       | Pandora   | Chandler   |
-|       33 | Lobortis Corporation                  | Latifah   | Lane       |
-|       33 | Varius Incorporated                   | Craig     | Richmond   |
-|       33 | Scelerisque Mollis Phasellus LLP      | Sacha     | Villarreal |
-|       33 | Sit Amet Diam Foundation              | Leonard   | Pena       |
-|       33 | Vitae Posuere At Company              | Medge     | Lawson     |
-|       33 | Purus Mauris Industries               | Dorian    | Jenkins    |
-|       32 | Varius Corp.                          | Ezekiel   | Parrish    |
-|       32 | Vitae Institute                       | Herrod    | Ross       |
-|       31 | Ornare Elit Corp.                     | Serina    | Guzman     |
-|       31 | Torquent Industries                   | Baker     | Michael    |
-|       31 | Rutrum Lorem Corp.                    | Marvin    | Hopkins    |
-|       31 | Enim Etiam LLP                        | Holly     | Henson     |
-|       31 | Lacus Quisque Corporation             | Scott     | Trevino    |
-|       31 | Sed Inc.                              | Wallace   | Nguyen     |
-|       31 | Non Sollicitudin Corp.                | Edan      | Hickman    |
-|       30 | Ut Cursus Incorporated                | Karleigh  | Cantrell   |
-|       30 | Quam LLC                              | Jacob     | Alford     |
-|       30 | Bibendum Ullamcorper Associates       | Lenore    | Ellis      |
-|       30 | Dolor Sit Amet Limited                | Stephanie | Bates      |
-|       30 | Luctus Corp.                          | Jesse     | Lynn       |
-|       30 | Aliquet Institute                     | Cathleen  | Walsh      |
-|       30 | Nulla Incorporated                    | Lamar     | Castaneda  |
-|       29 | Vivamus Ltd                           | Marvin    | George     |
-|       29 | Donec Vitae LLP                       | Perry     | Thornton   |
-|       29 | Eget Lacus Associates                 | Mollie    | Dillon     |
-|       29 | Quis Pede Praesent Institute          | Yvette    | Weber      |
-|       28 | Egestas Nunc Corporation              | Simone    | Juarez     |
-|       27 | Et Company                            | Eden      | Ewing      |
-|       27 | Euismod In Limited                    | Genevieve | Fitzgerald |
-|       26 | Libero Integer Ltd                    | Haley     | Freeman    |
-|       24 | Vestibulum Nec Euismod LLC            | Sydnee    | Faulkner   |
-|       23 | Risus Incorporated                    | Orli      | Combs      |
-|       22 | Sed Foundation                        | Dawn      | Townsend   |
-|       22 | Egestas Hendrerit Neque Foundation    | Eleanor   | Whitley    |
-|       19 | Donec Incorporated                    | Jenna     | Maynard    |
-+----------+---------------------------------------+-----------+------------+
-110 rows in set (0.02 sec)     
+    ->      COUNT(*)
+    -> FROM AddressBook aB JOIN Entry e 
+    ->      ON aB.id = e.addressBookId
+    ->      WHERE e.subtype = 'phone'
+    ->      AND e.contentLineOne LIKE '(3__)%' 
+    ->      OR e.contentLineOne LIKE '1-3__%';
++----------+
+| COUNT(*) |
++----------+
+|       60 |
++----------+
+1 row in set (0.00 sec)
+
+
+* How many Address Book Entries have ```home``` phones not containing the digit ```5```?
+
+mysql> SELECT
+    ->      COUNT(*)
+    -> FROM AddressBook aB JOIN Entry e
+    ->      ON aB.id = e.addressBookId
+    -> WHERE e.type = 'home' AND e.subtype = 'phone'
+    ->      AND e.contentLineOne NOT LIKE '%5%';
++----------+
+| COUNT(*) |
++----------+
+|       76 |
++----------+
+1 row in set (0.00 sec)
+
+SELECT
+    aB.id,
+     aB.name,
+     e.firstName,
+     e.lastName,
+     e.type,
+     e.subtype,
+     e.contentLineOne
+FROM AddressBook aB JOIN Entry e
+    ON aB.id = e.addressBookId
+WHERE e.type = 'home' AND e.subtype = 'phone'
+    AND e.contentLineOne NOT LIKE '%5%';
+
++-----+---------------------------------------+-----------+-----------+------+---------+----------------+
+| id  | name                                  | firstName | lastName  | type | subtype | contentLineOne |
++-----+---------------------------------------+-----------+-----------+------+---------+----------------+
+|  52 | Vestibulum Mauris Ltd                 | Herrod    | Conrad    | home | phone   | (884) 661-8280 |
+|  96 | Lorem Auctor Foundation               | Keane     | Browning  | home | phone   | (727) 361-3316 |
+|  78 | Vitae Institute                       | Herrod    | Ross      | home | phone   | (794) 218-6784 |
+|  24 | Arcu Aliquam Associates               | Veda      | Pierce    | home | phone   | (993) 716-7246 |
+
+
+|   5 | Lorem Foundation                      | Ulric     | Doyle     | home | phone   | 1-274-963-8229 |
+|  71 | Est Mauris Consulting                 | Roth      | Sloan     | home | phone   | 1-734-748-4431 |
+|  94 | Et Limited                            | Felicia   | Bradley   | home | phone   | 1-873-187-1708 |
+|  23 | Nulla In Tincidunt Institute          | Seth      | Moses     | home | phone   | 1-998-977-4969 |
++-----+---------------------------------------+-----------+-----------+------+---------+----------------+
+76 rows in set (0.00 sec)
+
+
+* How many Address Book Entries are ```work``` phones starting with a country code?  
+
+SELECT
+     COUNT(*)
+FROM AddressBook aB JOIN Entry e
+     ON aB.id = e.addressBookId
+WHERE e.type = 'work' AND e.subtype = 'phone'
+     AND e.contentLineOne LIKE '1-%';
+
++----------+
+| COUNT(*) |
++----------+
+|       60 |
++----------+
+1 row in set (0.00 sec)
